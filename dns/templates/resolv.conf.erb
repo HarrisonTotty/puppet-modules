@@ -1,0 +1,5 @@
+# MANAGED BY PUPPET
+search <%= scope['dns::search_domains'].join(' ') %>
+<% scope['dns::servers'].each do |server| -%>
+nameserver <%= server %>
+<% end -%>

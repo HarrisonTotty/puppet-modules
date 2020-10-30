@@ -1,0 +1,11 @@
+# Default Hiera Data
+# ------------------
+
+# Whether this module should manage any associated `firewall` resources.
+dns::manage_firewall: true
+
+# A list of search domains to assign to the node.
+dns::search_domains: ['example.com']
+
+# The list of DNS servers to assign to the node.
+dns::servers: ['8.8.8.8', '8.8.4.4']
