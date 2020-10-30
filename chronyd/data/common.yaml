@@ -1,0 +1,37 @@
+# Default Hiera Data
+# ------------------
+
+# The full path to the primary `chronyd` configuration file.
+chronyd::config_file: '/etc/chrony.conf'
+
+# If `chronyd::manage_service` is set to `true`, whether to ensure that the
+# `chronyd` service is enabled to run on boot.
+chronyd::enable_service: true
+
+# If `chronyd::manage_service` is set to `true`, whether to ensure that the
+# `chronyd` service is always running.
+chronyd::ensure_running: true
+
+# Whether this module should create any relevant `firewall` resources.
+chronyd::manage_firewall: true
+
+# Whether this module should manage the `chronyd` `service` resource.
+chronyd::manage_service: true
+
+# A list of necessary packages to install.
+chronyd::packages: ['chrony']
+
+# Specifies the value of the "hostname" associated with the `peer` time source
+# directive.
+chronyd::peer: null
+
+# Specifies the value of the "name" associated with the `pool` time source
+# directive.
+chronyd::pool: '2.centos.pool.ntp.org'
+
+# Specifies the value of the "hostname" associated with the `server` time source
+# directive.
+chronyd::server: null
+
+# A list of options to pass to the relevant time source directive.
+chronyd::time_source_options: ['iburst']
