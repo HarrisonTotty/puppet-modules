@@ -1,0 +1,13 @@
+# MANAGED BY PUPPET
+Service rsync
+{
+  disable = no
+  flags = IPV6
+  log_on_failure += USERID
+  per_source = UNLIMITED
+  server = /usr/bin/rsync
+  server_args = --daemon
+  socket_type = stream
+  user = root
+  wait = no
+}

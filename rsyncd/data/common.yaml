@@ -1,0 +1,26 @@
+# Default rsync Data
+# ------------------
+
+# The path to the primary rsync daemon configuration file.
+rsyncd::config_path: '/etc/rsyncd.conf'
+
+# Whether to enable the `xinetd` service on boot.
+rsyncd::enable_services: true
+
+# Whether to ensure that the `xinetd` service is always running.
+rsyncd::ensure_running: true
+
+# If `rsyncd::manage_firewall` is set to `true`, allow connections to port 873
+# from the following address(es).
+rsyncd::fw_allowed_source: '10.0.0.0/8'
+
+# Whether the module should add a firewall rule to allow port 873.
+rsyncd::manage_firewall: true
+
+# A list of which packages to install.
+rsyncd::packages:
+  - 'rsync'
+  - 'xinetd'
+
+# The path to the `xinetd` configuration file that controls the rsync daemon.
+rsyncd::xinetd_path: '/etc/xinetd.d/rsync'

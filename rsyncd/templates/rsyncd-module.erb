@@ -1,0 +1,53 @@
+
+[<%= @name %>]
+<% if @comment -%>
+comment = <%= @comment %>
+<% end -%>
+<% if @exclude -%>
+exclude = <%= @exclude %>
+<% end -%>
+gid = <%= @gid %>
+hosts allow = <%= @hosts_allow.join(' ') %>
+<% if @hosts_deny -%>
+hosts deny = <%= @hosts_deny.join(' ') %>
+<% end -%>
+<% if @include -%>
+include = <%= @include %>
+<% end -%>
+<% if @incoming_chmod -%>
+incoming chmod = <%= @incoming_chmod %>
+<% end -%>
+<% if @list -%>
+list = <%= @list %>
+<% end -%>
+<% if @log_file %>
+log file = <%= @log_file %>
+<% end -%>
+<% unless @max_connections.nil? -%>
+max connections = <%= @max_connections %>
+<% end -%>
+<% if @outgoing_chmod -%>
+outgoing chmod = <%= @outgoing_chmod %>
+<% end -%>
+path = <%= @path %>
+<% if @post_xfer_exec -%>
+post-xfer exec = <%= @post_xfer_exec %>
+<% end -%>
+<% if @pre_xfer_exec -%>
+pre-xfer exec = <%= @pre_xfer_exec %>
+<% end -%>
+read only = <%= @read_only %>
+<% unless @timeout.nil? -%>
+timeout = <%= @timeout %>
+<% end -%>
+uid = <%= @uid %>
+<% unless @use_chroot.nil? -%>
+<% if @use_chroot -%>
+use chroot = <%= @use_chroot %>
+<% end -%>
+<% end -%>
+<% unless @write_only.nil? -%>
+<% if @write_only -%>
+write only = <%= @write_only %>
+<% end -%>
+<% end -%>
