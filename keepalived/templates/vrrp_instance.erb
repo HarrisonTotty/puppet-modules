@@ -1,0 +1,43 @@
+vrrp_instance <%= @name %> {
+  <%- if @dont_track_primary -%>
+  dont_track_primary
+  <%- end -%>
+
+  advert_int        1
+  garp_master_delay 5
+  interface         <%= @interface %>
+  priority          <%= @priority %>
+  state             <%= @state %>
+  virtual_router_id <%= @virtual_router_id %>
+
+  authentication {
+    auth_type PASS
+    auth_pass <%= @_auth_pass_str %>
+  }
+
+  track_interface {
+    <%- unless @track_interfaces.nil? -%>
+    <%- @track_interfaces.each do |i| -%>
+    <%= i %>
+    <%- end -%>
+    <%- else -%>
+    <%- @_vip_interfaces.uniq.each do |i| -%>
+    <%= i %>
+    <%- end -%>
+    <%- end -%>
+  }
+
+  <%- unless @track_scripts.nil? -%>
+  track_script {
+    <%- @track_scripts.each do |s| -%>
+    <%= s %>
+    <%- end -%>
+  }
+  <%- end -%>
+
+  virtual_ipaddress {
+    <%- @virtual_ip_addresses.each do |vip| -%>
+    <%= @vip['address'] %> brd <%= @vip['broadcast'] %> dev <%= @vip['interface'] %>
+    <%- end -%>
+  }
+}

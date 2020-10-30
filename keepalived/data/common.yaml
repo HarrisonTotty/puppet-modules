@@ -1,0 +1,19 @@
+# Default Hiera Data
+# ------------------
+
+# Specified the full path to the `keepalived` primary configuration directory.
+keepalived::config_dir: '/etc/keepalived'
+
+# If `keepalived::manage_service` is set to `true`, whether to enable the
+# `keepalived` service to run at boot.
+keepalived::enable_service: true
+
+# If `keepalived::manage_service` is set to `true`, whether to ensure that the
+# `keepalived` service is always running.
+keepalived::ensure_running: true
+
+# Whether this module should manage the `keepalived` service.
+keepalived::manage_service: true
+
+# A list of necessary packages to install.
+keepalived::packages: ['keepalived']
