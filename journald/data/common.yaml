@@ -1,0 +1,29 @@
+# Default Hiera Data
+# ------------------
+
+# Specifies the full path to the primary journald configuration file.
+journald::config_file: '/etc/systemd/journald.conf'
+
+# If `journald::manage_service` is set to `true`, whether to enable the
+# `systemd-journald` service to run at boot.
+journald::enable_service: true
+
+# If `journald::manage_service` is set to `true`, whether to ensure that the
+# `systemd-journald` service is always running.
+journald::ensure_running: true
+
+# Whether this module should manage the `systemd-journald` service.
+journald::manage_service: true
+
+# Specifies the value of the `Storage` option within `journald.conf`.
+journald::storage_type: 'persistent'
+
+# Specifies the value of the `SystemMaxUse` option within `journald.conf`. If
+# this value is set to `undef`/`null`, it is automatically calculated based on
+# `journald::system_max_use_percent`.
+journald::system_max_use_bytes: null
+
+# Specifies the percentage of the `/var` partition for which the `SystemMaxUse`
+# option within `journald.conf` will be calculated if
+# `journald::system_max_use_bytes` is set to `undef`/`null`.
+journald::system_max_use_percent: 50

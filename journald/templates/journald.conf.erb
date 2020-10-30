@@ -1,0 +1,35 @@
+# MANAGED BY PUPPET
+
+[Journal]
+Storage=<%= scope['journald::storage_type'] %>
+#Compress=yes
+#Seal=yes
+#SplitMode=uid
+#SyncIntervalSec=5m
+#RateLimitIntervalSec=30s
+#RateLimitBurst=10000
+<% if scope['journald::system_max_use_bytes'].nil? -%>
+SystemMaxUse=<%= Integer(@facts['mountpoints']['/var']['size_bytes'] * (scope['journald::system_max_use_percent'] / 100.0)) %>
+<% else -%>
+SystemMaxUse=<%= scope['journald::system_max_use_bytes'] %>
+<% end -%>
+#SystemKeepFree=
+#SystemMaxFileSize=
+#SystemMaxFiles=100
+#RuntimeMaxUse=
+#RuntimeKeepFree=
+#RuntimeMaxFileSize=
+#RuntimeMaxFiles=100
+#MaxRetentionSec=
+#MaxFileSec=1month
+#ForwardToSyslog=no
+#ForwardToKMsg=no
+#ForwardToConsole=no
+#ForwardToWall=yes
+#TTYPath=/dev/console
+#MaxLevelStore=debug
+#MaxLevelSyslog=debug
+#MaxLevelKMsg=notice
+#MaxLevelConsole=info
+#MaxLevelWall=emerg
+#LineMax=48K
