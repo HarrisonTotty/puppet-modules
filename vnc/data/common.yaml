@@ -1,0 +1,41 @@
+# Default VNC Data
+# ----------------
+
+# A list of options to pass into the VNC server configuration file. See `man
+# vncserver` for more information on the structure of this file.
+vnc::config_options:
+  - 'geometry=800x600'
+  - 'localhost'
+  - 'nolisten=tcp'
+
+# The display on which to run the VNC server.
+vnc::display: 2
+
+# If `vnc::manage_service` is set to `true`, whether to enable the service to
+# run on boot.
+vnc::enable_service: true
+
+# If `vnc::manage_service` is set to `true`, whether to ensure that the service
+# is always running.
+vnc::ensure_running: true
+
+# The group associated with the default VNC process.
+vnc::group: 'root'
+
+# The directory within which the default `.vnc/passwd` file will be created.
+vnc::home_dir: '/root'
+
+# Whether to manage the VNC service. This includes managing the service's
+# systemd file.
+vnc::manage_service: true
+
+# The list of packages to install.
+vnc::packages:
+  - 'tigervnc-server'
+  - 'xterm'
+
+# The path at which the systemd service file should be installed.
+vnc::systemd_service_file: '/etc/systemd/system/vncserver.service'
+
+# The user associated with the default VNC process.
+vnc::user: 'root'

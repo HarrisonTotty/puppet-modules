@@ -1,0 +1,18 @@
+# MANAGED BY PUPPET
+# -----------------
+
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=<%= scope['vnc::user'] %>
+
+# Clean any existing files in /tmp/.X11-unix environment
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill :<%= scope['vnc::display'] %> > /dev/null 2>&1 || :'
+ExecStart=/usr/bin/vncserver :<%= scope['vnc::display'] %>
+ExecStop=/bin/sh -c '/usr/bin/vncserver -kill :<%= scope['vnc::display'] %> > /dev/null 2>&1 || :'
+
+[Install]
+WantedBy=multi-user.target
