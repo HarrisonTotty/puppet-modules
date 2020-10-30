@@ -1,0 +1,12 @@
+# Default Hiera Data
+# ------------------
+
+# Specifies the path under which sudoers files should be created.
+sudoers::include_dir: '/etc/sudoers.d'
+
+# Whether to include the default `%wheel` directive within the main sudoers
+# file.
+sudoers::include_wheel: false
+
+# Specifies the path to the primary sudoers file.
+sudoers::main_file: '/etc/sudoers'

@@ -1,0 +1,5 @@
+<% unless @sudoer_tags.nil? -%>
+<%= @user %> <%= @host %> = (<%= @as %>) <%= @sudoer_tags.join(':') %>: <%= @cmd %>
+<% else -%>
+<%= @user %> <%= @host %> = (<%= @as %>) <%= @cmd %>
+<% end -%>
