@@ -1,0 +1,18 @@
+# Default puppetagent Data
+# ------------------------
+
+# The path to the primary puppet agent configuration file.
+puppetagent::config_path: '/etc/puppetlabs/puppet/puppet.conf'
+
+# Whether to enable the `puppetagent` service to run on boot.
+puppetagent::enable_service: true
+
+# Whether to ensure that the `puppetagent` service is always running.
+puppetagent::ensure_running: false
+
+# Whether the module should manage any defined `service` resources.
+puppetagent::manage_service: true
+
+# A list of packages to install.
+puppetagent::packages:
+  - 'puppet-agent'
