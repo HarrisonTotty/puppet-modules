@@ -1,0 +1,16 @@
+# MANAGED BY PUPPET
+# -----------------
+
+CATALINA_BASE='<%= scope['tomcat_internal::catalina_home_dir'] %>'
+
+CATALINA_HOME='<%= scope['tomcat_internal::catalina_home_dir'] %>'
+
+CATALINA_OPTS="-server -<%= scope['tomcat_internal::catalina_opts'].join(' -') %>"
+
+JAVA_HOME='<%= scope['tomcat_internal::java_home_dir'] %>'
+
+JAVA_OPTS="-<%= scope['tomcat_internal::java_opts'].join(' -') %>"
+
+LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/usr/lib64/tomcat/lib'
+
+UMASK="<%= scope['tomcat_internal::umask'] %>"

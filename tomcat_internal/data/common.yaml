@@ -1,0 +1,198 @@
+# Default Apache Tomcat Data (Internal Module)
+# --------------------------------------------
+
+# Specifies the path to the Apache Tomcat base directory.
+tomcat_internal::base_dir: '/www/tomcat/base'
+
+# The absolute path to the internal CA certificate (as provided by the
+# `certutils` module).
+tomcat_internal::ca_cert_path: "%{lookup('certutils::certs_dir')}/example.crt"
+
+# The path to the Apache Tomcat base directory.
+tomcat_internal::catalina_home_dir: '/www/tomcat/base/current'
+
+# An additional set of options that make up the `CATALINA_OPTS` environment
+# variable (without the `-` prefix).
+tomcat_internal::catalina_opts:
+  - 'XX:+UseParallelGC'
+  - 'Xmx1024M'
+  - 'Xmx512M'
+
+# The pattern of the localhost access logs. This is ignored if
+# `tomcat_internal::manage_xml` is set to `false`.
+tomcat_internal::config_server_access_log_pattern: >-
+  %h %l %u %t &quot;%r&quot; %s %b
+
+# The prefix of the localhost access logs. This is ignored if
+# `tomcat_internal::manage_xml` is set to `false`.
+tomcat_internal::config_server_access_log_prefix: 'localhost_access_log'
+
+# The suffix of the localhost access logs. This is ignored if
+# `tomcat_internal::manage_xml` is set to `false`.
+tomcat_internal::config_server_access_log_suffix: '.txt'
+
+# Specifies the value of the `autoDeploy` attribute of the default (localhost)
+# Host directive of the Catalina service. This is ignored if
+# `tomcat_internal::manage_xml` is set to `false`.
+tomcat_internal::config_server_auto_deploy: true
+
+# Specifies the connection timeout for the `HTTP/1.1` connector in
+# `conf/server.xml`. This is ignored if `tomcat_internal::manage_xml` is set to
+# `false`.
+tomcat_internal::config_server_connection_timeout: 20000
+
+# Specifies the insecure listen port for the `HTTP/1.1` connector in
+# `conf/server.xml`. This is ignored if `tomcat_internal::manage_xml` is set to
+# `false`.
+tomcat_internal::config_server_http_listen_port: 8080
+
+# Specifies the secure listen port for the `HTTP/1.1` connector in
+# `conf/server.xml`. This is ignored if `tomcat_internal::manage_xml` is set to
+# `false`.
+tomcat_internal::config_server_https_listen_port: 8443
+
+# The name of the Catalina service defined in `conf/server.xml` if
+# `role::comcat::manage_xml` is set to `true`.
+tomcat_internal::config_server_service_name: 'Catalina'
+
+# Whether to automatically unpack WAR files. This is ignored if
+# `tomcat_internal::manage_xml` is set to `false`.
+tomcat_internal::config_server_unpack_war_files: true
+
+# Specifies the version of Apache Tomcat associated with the `current` symlink,
+# corresponding to a directory within `tomcat_internal::base_dir`. This is only
+# applied if `tomcat_internal::manage_current_symlink` is set to `true`.
+tomcat_internal::current_symlink_version: '9.0.38'
+
+# Specifies a list of options that make up the `DEBUG_OPTS` environment variable
+# (without `-` prefix).
+tomcat_internal::debug_opts:
+  - 'DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector'
+  - 'XX:+ExplicitGCInvokesConcurrentAndUnloadsClasses'
+  - 'XX:+HeapDumpOnOutOfMemoryError'
+  - 'XX:+PrintGCApplicationConcurrentTime'
+  - 'XX:+PrintGCApplicationStoppedTime'
+  - 'XX:+PrintGCDetails'
+  - 'XX:+PrintGCTimeStamps'
+  - 'XX:+PrintSafepointStatistics'
+  - 'XX:+UseCMSInitiatingOccupancyOnly'
+  - 'Xdebug'
+  - 'Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8100'
+  - 'verbose:gc'
+
+# Whether the tomcat service should be enabled on boot. This is ignored if
+# `tomcat_internal::manage_service` is set to `false`.
+tomcat_internal::enable_service: true
+
+# If `tomcat_internal::manage_firewall` is set to `true`, allow connections from
+# the specified address(es) to the ports defined by
+# `tomcat_internal::config_server_http(s)_listen_port`
+tomcat_internal::fw_allowed_source: '10.0.0.0/8'
+
+# Specifies a default group to run Tomcat as.
+tomcat_internal::group: 'tomcat'
+
+# Specifies whether the module should include a `tomcat-debug` service and
+# associated `conf/tomcat-debug.conf` file.
+tomcat_internal::include_debug_service: true
+
+# Specifies the path to the `cacerts` directory within which the java keystore
+# will be located.
+tomcat_internal::java_cacerts_dir: '/etc/pki/java/cacerts'
+
+# The path for which to set the `JAVA_HOME` environment variable.
+tomcat_internal::java_home_dir: '/usr/lib/jvm/jre'
+
+# Specifies a list of options to pass to `JAVA_OPTS` (without the `-` prefix).
+tomcat_internal::java_opts:
+  - 'Djava.awt.headless=true'
+  - 'Djava.security.egd=file:/dev/./urandom'
+
+# The name of the Java package to install.
+tomcat_internal::java_package: 'java-11-openjdk'
+
+# The version of `tomcat_internal::java_package` to install (or `latest`).
+tomcat_internal::java_version: 'latest'
+
+# Whether to manage the catalina home directory (or just let the package handle
+# it).
+tomcat_internal::manage_catalina_home: false
+
+# Whether to manage the contents of `catalina.properties`.
+tomcat_internal::manage_catalina_properties: false
+
+# Whether to manage `tomcat.conf` within `tomcat_internal::tomcat_conf_dir`.
+tomcat_internal::manage_conf: true
+
+# Whether to manage the `current` symlink typically associated with
+# `tomcat_internal::catalina_home_dir`.
+tomcat_internal::manage_current_symlink: true
+
+# Whether to manage `firewall` resources.
+tomcat_internal::manage_firewall: true
+
+# Whether to manage the tomcat group (or just let the package handle it).
+tomcat_internal::manage_group: false
+
+# Whether to manage rsyncd modules for the webapps directory.
+tomcat_internal::manage_rsyncd: true
+
+# Whether this module should define any relevant `rsyslog::imfile` resources.
+tomcat_internal::manage_rsyslog: true
+
+# Whether to enable management of the tomcat service.
+tomcat_internal::manage_service: true
+
+# Whether to manage ulimits related to Apache Tomcat via the `ulimits` module.
+tomcat_internal::manage_ulimits: true
+
+# Whether to manage the tomcat user (or just let the package handle it).
+tomcat_internal::manage_user: false
+
+# Whether to manage the various XML files within the base configuration
+# directory (such as `conf/server.xml`).
+tomcat_internal::manage_xml: true
+
+# The name of the Tomcat package to install.
+tomcat_internal::package: 'tomcat'
+
+# The collection of hosts for which to allow rsyncd module access.
+tomcat_internal::rsyncd_allowed_hosts:
+  - '127.0.0.1'
+  - '10.0.0.0/8'
+
+# Defines a hash of `rsyslog::imfile` specifications. Note that these will only
+# be defined if `tomcat_internal::manage_rsyslog` is set to `true`. Note that
+# the defined entries will assume `conf_file_name => 'tomcat.conf'`. Also
+# `facility` defaults to `local3` and `severity` defaults to `info`.
+tomcat_internal::rsyslog_imfiles: {}
+  # # NOTE: For CentOS 8+, catalina.out is synchonized via `journald`.
+  # '/www/tomcat/base/current/logs/catalina.out':
+  #   file_tag: 'tomcat.catalina.out'
+
+# The path to Tomcat's base configuration directory.
+tomcat_internal::tomcat_conf_dir: '/www/tomcat/base/current/conf'
+
+# The path to the home directory associated with `tomcat_internal::user`.
+tomcat_internal::tomcat_home_dir: '/www/tomcat/home'
+
+# Specifies the path to the Apache Tomcat webapps directory.
+tomcat_internal::tomcat_webapps_dir: '/www/tomcat/webapps'
+
+# Specifies a ulimit configuration hash which maps a ulimit "item" to a pair of
+# ulimit "values". The first "value" is taken to be the "soft" limit, while the
+# second is taken to be the "hard" limit.
+tomcat_internal::ulimits:
+  'nofile': [15000, 20000]
+  'nproc': [15000, 20000]
+
+# Sepcifies the value of the `UMASK` enviroment variable within
+# `conf/tomcat.conf`.
+tomcat_internal::umask: '0022'
+
+# Specifies a default user to run Tomcat as.
+tomcat_internal::user: 'tomcat'
+
+# Specifies the version of Tomcat to install. This may be any valid `ensure`
+# string corresponding to a `package` resource.
+tomcat_internal::version: 'latest'
