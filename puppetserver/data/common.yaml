@@ -1,0 +1,42 @@
+# Default puppetserver Data
+# -------------------------
+
+# The path to the appropriate environment dir.
+puppetserver::base_path: '/etc/puppetlabs/code/environments/production'
+
+# See https://tickets.puppetlabs.com/browse/PDB-4513
+puppetserver::cipher_suites:
+  - 'TLS_RSA_WITH_AES_256_CBC_SHA256'
+  - 'TLS_RSA_WITH_AES_256_CBC_SHA'
+  - 'TLS_RSA_WITH_AES_128_CBC_SHA256'
+  - 'TLS_RSA_WITH_AES_128_CBC_SHA'
+
+# Whether to enable the `puppetserver` service to run on boot.
+puppetserver::enable_services: true
+
+# Whether to ensure that the `puppetserver` service is always running.
+puppetserver::ensure_running: true
+
+# If `puppetserver::manage_firewall` is set to `true`, allow connections to port
+# 8081 and 8140 from the following address(es).
+puppetserver::fw_allowed_source: '10.0.0.0/8'
+
+# Whether the module should add a firewall rule to allow port 8081 and 8140.
+puppetserver::manage_firewall: true
+
+# A list of CentOS 8 module packages to install.
+puppetserver::module_packages:
+  - name: 'postgresql'
+    profile: 'server'
+    stream: '10'
+
+# A list of packages to install.
+puppetserver::packages:
+  - 'postgresql-contrib'
+  - 'puppetserver'
+  - 'puppet-bolt'
+
+# A list of hosts allowed to rsync data to/from `puppetserver::base_path`.
+puppetserver::rsyncd_allowed_hosts:
+  - '127.0.0.1'
+  - '%{facts.ipaddress}'
