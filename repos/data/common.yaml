@@ -1,0 +1,38 @@
+# Default Package Repo Data
+# -------------------------
+
+# The base path.
+repos::base_path: 'cobbler/repo_mirror'
+
+# Whether this module should create any associated `firewall` resources.
+repos::manage_firewall: true
+
+# The collection of possible repos.
+repos::repos:
+  'centos-8-appstream':
+    contains_modules: true
+    desc: 'CentOS 8 - AppStream'
+  'centos-8-baseos':
+    desc: 'CentOS 8 - BaseOS'
+  'centos-8-elrepo':
+    desc: 'CentOS 8 - ELRepo Project - Main'
+  'centos-8-elrepo-extras':
+    desc: 'CentOS 8 - ELRepo Project - Extras'
+  'centos-8-elrepo-kernel':
+    desc: 'CentOS 8 - ELRepo Project - Kernel'
+  'centos-8-epel-everything':
+    desc: 'CentOS 8 - EPEL - Everything'
+  'centos-8-epel-modular':
+    contains_modules: true
+    desc: 'CentOS 8 - EPEL - Modular'
+  'centos-8-extras':
+    desc: 'CentOS 8 - Extras'
+  'centos-8-puppet':
+    desc: 'CentOS 8 - Puppet - Main'
+  'centos-8-puppet-tools':
+    desc: 'CentOS 8 - Puppet - Tools'
+  'centos-8-zabbix':
+    desc: 'CentOS 8 - Zabbix'
+
+# The FQDN or IP address of the server from which packages will be pulled.
+repos::server: '%{serverip}'
