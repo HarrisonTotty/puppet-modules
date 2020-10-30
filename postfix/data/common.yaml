@@ -1,0 +1,34 @@
+# Default Postfix Data
+# --------------------
+
+# A fully-qualified domain that defines the `mydomain` and `myorigin` options
+# within `main.cf`.
+postfix::domain: '%{facts.domain}'
+
+# If `postfix::manage_service` is set to `true`, whether the `postfix` service
+# should be set to run at boot.
+postfix::enable_service: true
+
+# If `postfix::manage_service` is set to `true`, whether to ensure that the
+# `postfix` service is always running.
+postfix::ensure_running: true
+
+# Specifies a list of network interfaces to make up the `inet_interfaces` option
+# within `main.cf`.
+postfix::interfaces: ['localhost']
+
+# Whether this module should manage any associated `firewall` resources.
+postfix::manage_firewall: true
+
+# Whether Puppet should manage the `postfix` service.
+postfix::manage_service: true
+
+# The list of necessary packages to install.
+postfix::packages: ['postfix']
+
+# Specifies a list of CIDR addresses which will make up the `mynetworks` option
+# within `main.cf`.
+postfix::networks: ['127.0.0.0/8']
+
+# An optional parameter that defines the `relayhost` option within `main.cf`.
+postfix::relay_host: null
