@@ -1,0 +1,19 @@
+# Default Module Parameter Values
+# -------------------------------
+
+# The path within which the `update-ca-trust` script expects certificates to be
+# placed.
+certutils::ca_trust_dir: '/etc/pki/ca-trust/source/anchors'
+
+# A list of certificates to include on the host.
+certutils::certs:
+  'example.crt': 'TC,c,c'
+
+# The directory within which certificates should be placed.
+certutils::certs_dir: '/etc/pki/tls/certs'
+
+# The name of the NSS tools package containing `certutil`.
+certutils::nss_tools_package: 'nss-tools'
+
+# The base directory of the NSS database.
+certutils::nssdb_dir: '/etc/pki/nssdb'
