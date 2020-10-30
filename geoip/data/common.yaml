@@ -1,0 +1,20 @@
+# Default GeoIP Data
+# ------------------
+
+# Specifies the directory within which GeoIP database (`.dat`) files can be
+# found.
+geoip::data_dir: '/usr/share/GeoIP'
+
+# Specifies whether Puppet should create a symlink from `geoip::symlink_dir` to
+# `geoip::data_dir`.
+geoip::manage_symlink: true
+
+# The list of necessary packages to install.
+geoip::packages:
+  - 'GeoIP'
+  - 'GeoIP-GeoLite-data'
+  - 'GeoIP-GeoLite-data-extra'
+
+# If `geoip::manage_symlink` is set to `true`, specifies the directory which
+# will be symbolically linked to `geoip::data_dir`.
+geoip::symlink_dir: '/usr/local/share/GeoIP'
