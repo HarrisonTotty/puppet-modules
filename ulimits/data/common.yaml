@@ -1,0 +1,5 @@
+# Default Hiera Data
+# ------------------
+
+# The directory under which ulimit configuration files will be placed.
+ulimits::limits_dir: '/etc/security/limits.d'

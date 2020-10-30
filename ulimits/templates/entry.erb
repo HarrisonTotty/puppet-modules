@@ -1,0 +1,7 @@
+
+<% unless @values[0].nil? -%>
+<%= @domain %> soft <%= @item %> <%= @values[0] %>
+<% end -%>
+<% unless @values[1].nil? -%>
+<%= @domain %> hard <%= @item %> <%= @values[1] %>
+<% end -%>
