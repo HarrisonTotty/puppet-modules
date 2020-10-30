@@ -1,0 +1,26 @@
+# Default Hiera Data
+# ------------------
+
+# Specifies the value of the `ldap_search_base` option within the `sssd`
+# configuration file.
+sssd::ldap_search_base: 'dc=example,dc=com'
+
+# Specifies the FQDN of the LDAP server to connect to.
+sssd::ldap_server: 'ldap.example.com'
+
+# Specifies the path associated with the `ldap_tls_cacert` option within the
+# `sssd` configuration file.
+sssd::ldap_tls_cacert: '/etc/pki/tls/certs/example.crt'
+
+# Whether this module should create any necessary `firewall` resources.
+sssd::manage_firewall: true
+
+# Whether this module should manage the `oddjobd` and `sssd` services.
+sssd::manage_services: true
+
+# A list of necessary packages to install.
+sssd::packages:
+  - 'oddjob-mkhomedir'
+  - 'sssd-client'
+  - 'sssd-common'
+  - 'sssd-ldap'

@@ -1,0 +1,26 @@
+# MANAGED BY PUPPET
+
+[domain/default]
+access_provider = simple
+auth_provider = ldap
+cache_credentials = True
+chpass_provider = none
+entry_cache_timeout = 600
+id_provider = ldap
+ldap_id_use_start_tls = True
+ldap_network_timeout = 3
+ldap_schema = rfc2307
+ldap_search_base = <%= scope['sssd::ldap_search_base'] %>
+ldap_tls_cacert = <%= scope['sssd::ldap_tls_cacert'] %>
+ldap_tls_reqcert = demand
+ldap_uri = ldaps://<%= scope['sssd::ldap_server'] %>/
+
+[nss]
+filter_users = root,ldap,named,avahi,haldaemon,dbus,nscd
+
+[pam]
+
+[sssd]
+config_file_version = 2
+domains = default
+services = nss, pam
