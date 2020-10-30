@@ -1,0 +1,67 @@
+# Default Cobbler Server Data
+# ---------------------------
+
+# The default templating engine used to render kickstarts & snippets.
+cobbler::default_template_type: 'cheetah'
+
+# The IPv4 address(es) of the DNS server(s) handed out by Cobbler's DHCP server.
+# For some reason this seems to work when only specifying _one_ server.
+cobbler::dhcp_dns_servers: ['8.8.8.8']
+
+# The netmask corresponding to `cobbler::dhcp_subnet`.
+cobbler::dhcp_netmask: '%{facts.netmask}'
+
+# The subnet on which the Cobbler server will hand out IPv4 addresses.
+cobbler::dhcp_subnet: '%{facts.network}'
+
+# Whether to enable the various services associated with Cobbler so that they
+# run on boot.
+cobbler::enable_services: true
+
+# Whether to ensure that the `cobblerd` and `httpd` services are always running.
+cobbler::ensure_running: true
+
+# The parent path containing the Cobbler settings file.
+cobbler::etc_dir: '/etc/cobbler'
+
+# If `cobbler::manage_firewall` is set to `true`, allow connections to ports 80
+# and 443 from the following address(es).
+cobbler::fw_allowed_source: '10.0.0.0/8'
+
+# The parent path containing Cobbler templates and snippets.
+cobbler::lib_dir: '/var/lib/cobbler'
+
+# Whether the module should add a firewall rule to allow ports 80 and 443.
+cobbler::manage_firewall: true
+
+# A list of module packages to install.
+cobbler::module_packages:
+  - name: 'cobbler'
+    profile: 'default'
+    stream: '3'
+
+# A list of packages to install.
+cobbler::packages:
+  - 'bind'
+  - 'debmirror'
+  - 'dhcp-server'
+  - 'pykickstart'
+  - 'syslinux'
+  - 'xinetd'
+  - 'yum-utils'
+
+# The full-qualified domain name of the default puppet server to attach any
+# systems provisioned by this cobbler server to.
+cobbler::puppet_server: '%{facts.fqdn}'
+
+# A list of hosts to grant access to the Cobbler-related rsyncd modules.
+cobbler::rsyncd_allowed_hosts:
+  - '127.0.0.1'
+  - '%{facts.ipaddress}'
+  - '10.0.0.0/8'
+
+# The IP address of the cobbler server, as seen by any client.
+cobbler::server_address: '%{facts.ipaddress}'
+
+# The parent path containing Cobbler distro and repo mirrors.
+cobbler::www_dir: '/var/www/cobbler'

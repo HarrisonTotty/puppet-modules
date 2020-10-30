@@ -1,0 +1,14 @@
+# CentOS 7.x Data
+# ---------------
+
+cobbler::module_packages: []
+
+cobbler::packages:
+  - 'bind'
+  - 'cobbler'
+  - 'cobbler-web'
+  - 'debmirror'
+  - 'dhcp'
+  - 'pykickstart'
+  - 'syslinux'
+  - 'xinetd'
