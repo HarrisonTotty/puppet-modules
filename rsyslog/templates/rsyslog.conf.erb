@@ -1,0 +1,38 @@
+# MANAGED BY PUPPET
+
+# ----- Modules -----
+
+<% scope['rsyslog::modules'].each do |m, h| -%>
+<% if h -%>
+module(load="<%= m %>"<% h.each do |k, v| %> <%= k %>="<%= v %>"<% end %>)
+<% else -%>
+module(load="<%= m %>")
+<% end -%>
+<% end -%>
+
+# ----- Global Directives -----
+
+# Where to place auxiliary files.
+global(workDirectory="<%= scope['rsyslog::work_dir'] %>")
+
+# Include additional configuration files.
+include(file="<%= scope['rsyslog::include_dir'] %>/*.conf" mode="optional")
+
+# ----- Rules -----
+
+<% scope['rsyslog::rules'].each do |k, v| -%>
+<%= k %>    <%= v %>
+<% end -%>
+
+# ----- Forwarding -----
+
+action(type="omfwd"
+       queue.filename="fwd"
+       queue.maxdiskspace="<%= scope['rsyslog::fwd_queue_max_disk_space'] %>"
+       queue.saveonshutdown="on"
+       queue.type="LinkedList"
+       action.resumeRetryCount="-1"
+       Target="<%= scope['rsyslog::target_server_host'] %>"
+       Port="<%= scope['rsyslog::target_server_port'] %>"
+       Protocol="tcp"
+)

@@ -1,0 +1,53 @@
+# Default Hiera Data
+# ------------------
+
+# Specifies the path to the primary `rsyslog` configuration file.
+rsyslog::config_file: '/etc/rsyslog.conf'
+
+# If `rsyslog::manage_service` is set to `true`, whether to enable the `rsyslog`
+# service to run at system boot.
+rsyslog::enable_service: true
+
+# If `rsyslog::manage_service` is set to `true`, whether to ensure that the
+# `rsyslog` service is always running.
+rsyslog::ensure_running: true
+
+# Specifies the value of the `queue.maxdiskspace` parameter of the `omfwd`
+# action within the primary `rsyslog` configuration file.
+rsyslog::fwd_queue_max_disk_space: '1g'
+
+# Specifies the path to the `rsyslog` include directory.
+rsyslog::include_dir: '/etc/rsyslog.d'
+
+# Whether this module should manage any necessary `firewall` resources.
+rsyslog::manage_firewall: true
+
+# Whether this module should manage the `rsyslog` service.
+rsyslog::manage_service: true
+
+# Specifies the set of `rsyslog` modules to configure within the primary
+# `rsyslog` configuration file.
+rsyslog::modules:
+  'builtin:omfile':
+    'Template': 'RSYSLOG_TraditionalFileFormat'
+  'imuxsock':
+    'SysSock.Use': 'off'
+  'imjournal':
+    'StateFile': 'imjournal.state'
+  'imfile':
+    'PollingInterval': '10'
+
+# The list of necessary package to install.
+rsyslog::packages: ['rsyslog']
+
+# The list of `rsyslog` rules to define in the primary configuration file.
+rsyslog::rules: {}
+
+# Specifies the FQDN or IP Address of the server to send `rsyslog` entries to.
+rsyslog::target_server_host: 'log-server.example.com'
+
+# Specifies the target port associated with `rsyslog::target_server_host`.
+rsyslog::target_server_port: 514
+
+# Specifies the path to the `rsyslog` global `workDirectory`.
+rsyslog::work_dir: '/var/lib/rsyslog'

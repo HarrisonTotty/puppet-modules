@@ -1,0 +1,10 @@
+
+input(type="imfile"
+      Facility="<%= @facility %>"
+      File="<%= @name %>"
+      <%- unless @persist_state_interval.nil? -%>
+      PersistStateInterval="<%= @persist_state_interval %>"
+      <%- end -%>
+      Severity="<%= @severity %>"
+      Tag="<%= @file_tag %>"
+)
